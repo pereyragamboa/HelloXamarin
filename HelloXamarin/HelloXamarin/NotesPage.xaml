@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloXamarin.NotesPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="AddNoteItem"
+                     Text="+"
+                     Clicked="AddNoteItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="NoteListView"
+              Margin="20"
+              ItemSelected="NoteListView_ItemSelected">
+        <!--
+        ItemTemplate sets the "format" of items in the ListView.
+        Each element of ListView's item source acts as a binding
+        context for each item.
+        -->
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Content}"
+                          Detail="{Binding Date}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

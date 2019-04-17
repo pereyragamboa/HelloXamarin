@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HelloXamarin.NoteEntryPage"
+             Title="Add a note">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <!--
+            The "{Binding PropertyName}" syntax binds the property in
+            the XAML element to a property in the object set as
+            BindingContext; this way, it is not necessary to
+            explicitly assign values in code.
+            -->
+            <Editor x:Name="NoteEditor"
+                    Placeholder="Write a note"
+                    Text="{Binding Content}"
+                    HeightRequest="100"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SaveButton"
+                        Text="Save"
+                        Clicked="SaveButton_Clicked"/>
+                <Button x:Name="DeleteButton"
+                        Grid.Column="1"
+                        Text="Delete"
+                        Clicked="DeleteButton_Clicked"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
