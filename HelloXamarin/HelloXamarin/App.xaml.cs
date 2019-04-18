@@ -2,18 +2,33 @@
 using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using HelloXamarin.Data;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace HelloXamarin
 {
     public partial class App : Application
     {
+        private static NoteDatabase mDatabase;
+
         public App()
         {
             InitializeComponent();
 
             NotesPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             MainPage = new NavigationPage(new NotesPage());
+        }
+
+        public static NoteDatabase Database
+        {
+            get
+            {
+                if (mDatabase == null)
+                {
+                    mDatabase = new NoteDatabase(Path.Combine(NotesPath, "notes.db3"));
+                }
+                return mDatabase;
+            }
         }
 
         /// <summary>

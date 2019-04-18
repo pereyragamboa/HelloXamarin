@@ -16,19 +16,12 @@ namespace HelloXamarin
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            // Populates the list view with the content of the notes folder
-            NoteListView.ItemsSource = (
-                from f in Directory.EnumerateFiles(App.NotesPath)
-                select new Note()
-                {
-                    Name = Path.GetFileName(f),
-                    Content = File.ReadAllText(f),
-                    Date = File.GetCreationTime(f)
-                }).OrderBy(n => n.Date);
+            // Populates the list view with the content of the notes DB
+            NoteListView.ItemsSource = await App.Database.GetNotesAsync();
         }
 
         /// <summary>

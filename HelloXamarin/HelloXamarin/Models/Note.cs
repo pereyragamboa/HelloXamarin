@@ -1,4 +1,5 @@
 ﻿using System;
+using SQLite;
 
 namespace HelloXamarin.Models
 {
@@ -10,9 +11,10 @@ namespace HelloXamarin.Models
         public Note() => Date = DateTime.UtcNow;
 
         /// <summary>
-        /// Name of the note.
+        /// Identifier of the note.
         /// </summary>
-        public string Name { get; set; }
+        [PrimaryKey, AutoIncrement] public int ID { get; set; }
+        // Sets this property as the primary key for the notes tables
 
         /// <summary>
         /// Content of the note itself.

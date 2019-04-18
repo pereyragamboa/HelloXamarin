@@ -16,9 +16,10 @@ namespace HelloXamarin
 
         async private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            // Saves note in the file system
+            // Saves note in the database
             var note = (Note)BindingContext;
-            File.WriteAllText(App.GetNoteFileName(note.Name), note.Content);
+            note.Date = DateTime.UtcNow;
+            await App.Database.SaveNoteAsync(note);
 
             // Removes current page from the navigation stack
             await Navigation.PopAsync();
@@ -26,14 +27,9 @@ namespace HelloXamarin
 
         async private void DeleteButton_Clicked(object sender, EventArgs e)
         {
+            // Deletes note from the database
             var note = (Note)BindingContext;
-            var noteFileName = App.GetNoteFileName(note.Name);
-
-            // If the file exists, deletes it from the file system
-            if (File.Exists(noteFileName))
-            {
-                File.Delete(noteFileName);
-            }
+            await App.Database.DeleteNoteAsync(note);
 
             // Removes current page from the navigation stack
             await Navigation.PopAsync();
