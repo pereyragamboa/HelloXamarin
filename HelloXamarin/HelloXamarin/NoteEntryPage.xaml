@@ -16,6 +16,11 @@
             BindingContext; this way, it is not necessary to
             explicitly assign values in code.
             -->
+            <Entry x:Name="NoteTitleEntry"
+                   Placeholder="Write a note title"
+                   Text="{Binding Title}"
+                   Completed="NoteTitleEntry_Completed"
+                   TextChanged="NoteTitleEntry_TextChanged"/>
             <Editor x:Name="NoteEditor"
                     Placeholder="Write a note"
                     Text="{Binding Content}"

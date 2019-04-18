@@ -17,6 +17,11 @@ namespace HelloXamarin.Models
         // Sets this property as the primary key for the notes tables
 
         /// <summary>
+        /// Title of the note.
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
         /// Content of the note itself.
         /// </summary>
         public string Content { get; set; }

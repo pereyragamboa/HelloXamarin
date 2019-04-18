@@ -34,5 +34,16 @@ namespace HelloXamarin
             // Removes current page from the navigation stack
             await Navigation.PopAsync();
         }
+
+        private void NoteTitleEntry_Completed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NoteTitleEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Enables Save button if title is nonempty
+            SaveButton.IsEnabled = !string.IsNullOrWhiteSpace((sender as Entry)?.Text);
+        }
     }
 }
